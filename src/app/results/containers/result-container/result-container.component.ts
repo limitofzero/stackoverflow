@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { StackoverflowApiService } from '../../../services/stackoverflow-api.service';
 import { Observable } from 'rxjs';
 import { Question } from '../../../interfaces/question';
-import { QuickPanelService } from '../../services/quick-panel.service';
 
 @Component({
   selector: 'so-result-container',

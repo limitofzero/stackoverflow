@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Question } from '../../../interfaces/question';
 import { StackoverflowApiService } from '../../../services/stackoverflow-api.service';
 import { QuickPanelService } from '../../services/quick-panel.service';
