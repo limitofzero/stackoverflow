@@ -1,0 +1,10 @@
+<div class="answer">
+  <div class="code" [innerHTML]="answer.body"></div>
+  <div class="d-flex justify-content-end align-items-center">
+    <i>
+      answered {{ answer.owner.display_name }}
+    </i>
+
+    <img class="profile-img ml-3" [src]="answer.owner.profile_image">
+  </div>
+</div>

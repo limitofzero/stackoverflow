@@ -1,0 +1,9 @@
+<div class="d-flex flex-column">
+  <ng-container *ngFor="let item of items">
+    <so-table-item class="table-item"
+                   [question]="item"
+                   (authorClicked)="onAuthorClickedHandler($event)"
+                   (tagClicked)="onTagClickedHandler($event)">
+    </so-table-item>
+  </ng-container>
+</div>

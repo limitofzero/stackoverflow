@@ -1,0 +1,16 @@
+<form [formGroup]="group">
+  <div class="form-group">
+    <label for="email">
+      Forgot your account's password? Enter your email address and we'll send you a recovery link.
+    </label>
+    <input class="form-control"
+           type="email"
+           placeholder="you@example.com"
+           id="email"
+           formControlName="email">
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Send Recovery Email
+  </button>
+</form>

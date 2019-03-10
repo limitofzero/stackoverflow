@@ -1,0 +1,23 @@
+<ng-container *ngIf="isOpen | async">
+  <div class="quick-modal">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-sm-10 offset-sm-1">
+          <so-quick-panel (close)="onCloseClickHandler()">
+
+            <ng-container *ngIf="loading | async">
+              <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status"></div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="!(loading | async)">
+              <so-table-container [questions]="questions | async"></so-table-container>
+            </ng-container>
+
+          </so-quick-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

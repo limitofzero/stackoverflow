@@ -1,0 +1,30 @@
+<form [formGroup]="group" (ngSubmit)="onSubmitHandler()">
+  <div class="form-group">
+    <label for="name">Display Name</label>
+    <input class="form-control"
+           type="text"
+           placeholder="J. Doe"
+           id="name"
+           formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="email">Email (required, but never shown)</label>
+    <input class="form-control"
+           type="email"
+           placeholder="you@example.com"
+           id="email"
+           formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input class="form-control"
+           type="email"
+           placeholder="******"
+           id="password"
+           formControlName="password">
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Sign up
+  </button>
+</form>

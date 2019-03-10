@@ -1,0 +1,7 @@
+<div class="d-flex">
+  <ng-container *ngFor="let tag of tags">
+    <div class="mr-2" (click)="onClickHandler(tag)" (keypress)="onKeyPressHandler($event, tag)">
+      <so-tag>{{ tag }}</so-tag>
+    </div>
+  </ng-container>
+</div>

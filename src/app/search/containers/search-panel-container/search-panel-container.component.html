@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm col-md-8 offset-md-2">
+      <img src="../../../../assets/logo.png" class="w-100">
+      <form [formGroup]="formGroup"
+            (ngSubmit)="onSubmitHandler()"
+            class="form-group search-container">
+        <input type="text"
+               class="form-control"
+               formControlName="search"
+               placeholder="Search...">
+        <button type="submit" class="btn btn-primary btn-submit">
+          <img src="../../../../assets/search.png">
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

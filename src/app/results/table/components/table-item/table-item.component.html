@@ -1,0 +1,31 @@
+<div class="d-flex flex-column">
+  <div class="d-flex item">
+    <so-answered class="item-answered mr-2"
+                 [routerLink]="[ '/answers']" [queryParams]="{ questionId: question.question_id }"
+                 [count]="question.answer_count">
+    </so-answered>
+
+    <div class="d-flex flex-column">
+      <h5>
+        <a [routerLink]="[ '/answers']" [queryParams]="{ questionId: question.question_id }">
+          {{ question.title }}
+        </a>
+      </h5>
+      <div class="d-flex">
+        <so-tag-list [tags]="question.tags"
+                     (clicked)="onTagClickedHandler($event)">
+        </so-tag-list>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ml-auto">
+    <i>asked by: </i>
+    <div class="author" tabindex="0"
+         (click)="onAuthorClickedHandler()"
+         (keypress)="onAuthorKeyPressHandler($event)">
+        {{ question.owner.display_name }}
+    </div>
+  </div>
+</div>

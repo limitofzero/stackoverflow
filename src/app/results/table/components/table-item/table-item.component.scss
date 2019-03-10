@@ -1,0 +1,21 @@
+.item {
+  padding: 0.8rem 0.2rem;
+
+  .item-answered {
+    min-width: 4rem;
+    height: 4rem;
+    border: 1px solid rgba(69,161,99,0.5);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+}
+
+.author {
+  color: #07C;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    color: #3af;
+  }
+}

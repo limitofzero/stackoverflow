@@ -1,0 +1,25 @@
+<form [formGroup]="group" (ngSubmit)="onSubmitHandler()">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input class="form-control"
+           type="email"
+           placeholder="you@example.com"
+           id="email"
+           formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input class="form-control"
+           type="email"
+           placeholder="******"
+           id="password"
+           formControlName="password">
+  </div>
+  <div class="d-flex justify-content-end">
+    <a routerLink="/auth/forgot">forgot?</a>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Log in
+  </button>
+</form>

@@ -1,0 +1,16 @@
+.answer {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+
+  ::ng-deep .code {
+    pre {
+      background-color: #eff0f1;
+    }
+  }
+
+  .profile-img {
+    width: 4rem;
+    height: 4rem;
+  }
+}
