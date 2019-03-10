@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthApiService } from '../../../services/auth-api.service';
 import { Observable } from 'rxjs';
 import { User } from '../../../interfaces/user';
 import { Router } from '@angular/router';
+import { AuthApiService } from '../../services/auth-api.service';
 
 @Component({
   selector: 'so-sign-up',

@@ -11,32 +11,33 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StackoverflowApiService {
+  private readonly additionalParams = 'order=desc&sort=activity&site=stackoverflow';
+
   constructor(private http: HttpClient) {}
 
-  // todo постараться завернуть в константы
   getQuestions(query: string): Observable<Question[]> {
-    const url = `${ environment.soApiUrl }/search?order=desc&sort=activity&intitle=${ query }&site=stackoverflow`;
+    const url = `${ environment.soApiUrl }/search?${ this.additionalParams }&intitle=${ query }`;
     return this.http.get<SoAnswer<Question>>(url).pipe(
       map(answer => answer.items)
     );
   }
 
   getQuestionsByUserId(userId: number): Observable<Question[]> {
-    const url = `${ environment.soApiUrl }/users/${ userId }/questions?order=desc&sort=activity&site=stackoverflow`;
+    const url = `${ environment.soApiUrl }/users/${ userId }/questions?${ this.additionalParams }`;
     return this.http.get<SoAnswer<Question>>(url).pipe(
       map(answer => answer.items)
     );
   }
 
   getAnswers(questionId: string): Observable<Answer[]> {
-    const url = `${ environment.soApiUrl }/questions/${ questionId }/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody`;
+    const url = `${ environment.soApiUrl }/questions/${ questionId }/answers?filter=withbody&${ this.additionalParams}`;
     return this.http.get<SoAnswer<Answer>>(url).pipe(
       map(answer => answer.items)
     );
   }
 
   getQuestionByTag(tag: string): Observable<Question[]> {
-    const url = `${ environment.soApiUrl }/questions?tagged=${ tag }&order=desc&sort=activity&site=stackoverflow`;
+    const url = `${ environment.soApiUrl }/questions?tagged=${ tag }&${ this.additionalParams }`;
     return this.http.get<SoAnswer<Question>>(url).pipe(
       map(answer => answer.items)
     );

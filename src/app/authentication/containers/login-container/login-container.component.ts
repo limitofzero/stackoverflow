@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthApiService } from '../../../services/auth-api.service';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+import { AuthApiService } from '../../services/auth-api.service';
 
 @Component({
   selector: 'so-login',

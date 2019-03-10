@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../interfaces/user';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { User } from '../../interfaces/user';
+import { environment } from '../../../environments/environment';
 
-// todo переместить в auth модуль
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthApiService {
   constructor(private http: HttpClient) {}
 

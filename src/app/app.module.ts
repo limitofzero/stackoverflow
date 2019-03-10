@@ -4,9 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchModule } from './search/search.module';
-import { ResultsModule } from './results/results.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AnswersModule } from './answers/answers.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -18,10 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    // todo возможно стоит заюзать lazy
-    SearchModule,
-    ResultsModule,
-    AnswersModule
+    SearchModule
   ],
   providers: [],
   bootstrap: [

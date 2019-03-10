@@ -7,6 +7,7 @@ import { MainComponent } from './components/main/main.component';
 import { ForgotContainerComponent } from './containers/forgot-container/forgot-container.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpContainerComponent } from './containers/sign-up-container/sign-up-container.component';
+import { AuthApiService } from './services/auth-api.service';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,9 @@ import { SignUpContainerComponent } from './containers/sign-up-container/sign-up
     FormsModule,
     ReactiveFormsModule,
     CommonModule
+  ],
+  providers: [
+    AuthApiService
   ]
 })
 export class AuthenticationModule { }
