@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { SearchModule } from './search/search.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserService } from './services/user.service';
+import { environment } from '../environments/environment';
+import { UserMockService } from './services/user-mock.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     SearchModule
   ],
-  providers: [],
+  providers: [
+    { provide: UserService, useClass: environment.isMock ? UserMockService : UserService }
+  ],
   bootstrap: [
     AppComponent
   ]

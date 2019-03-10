@@ -13,8 +13,8 @@ export class AuthApiService {
     return this.http.post<{ status: number }>(url, user);
   }
 
-  login(user: { email: string, password: string }): Observable<any> {
+  login(user: { email: string, password: string }): Observable<{ token: string }> {
     const url = `${ environment.authApiPrefix }/login`;
-    return this.http.post(url, user);
+    return this.http.post<{ token: string }>(url, user);
   }
 }

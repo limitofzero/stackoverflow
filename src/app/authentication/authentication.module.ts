@@ -8,6 +8,8 @@ import { ForgotContainerComponent } from './containers/forgot-container/forgot-c
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignUpContainerComponent } from './containers/sign-up-container/sign-up-container.component';
 import { AuthApiService } from './services/auth-api.service';
+import { environment } from '../../environments/environment';
+import { AuthApiMockService } from './services/auth-api-mock.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { AuthApiService } from './services/auth-api.service';
     CommonModule
   ],
   providers: [
-    AuthApiService
+    { provide: AuthApiService, useClass: environment.isMock ? AuthApiMockService : AuthApiService }
   ]
 })
 export class AuthenticationModule { }
