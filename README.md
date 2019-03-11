@@ -18,7 +18,7 @@ docker-compose up
 
 2) Запуск вручную
 
-Необходима установленная mongo и nodejs(v10.12.0). Перед запуском нужно поменять в файле stackoverflow/server/.env срочку с mongodb://mongo:27017/stackoverflow на mongodb://<your-address>/stackoverflow
+Необходима установленная mongo и nodejs(v10.12.0). Перед запуском нужно поменять в файле stackoverflow/server/.env срочку с mongodb://mongo:27017/stackoverflow на mongodb://ваши порты к монге/stackoverflow
 
 ```
 cd stackoverflow
