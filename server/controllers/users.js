@@ -22,6 +22,7 @@ module.exports = {
         const user = new User({ name, password, email });
 
         user.save().then(() => {
+          const status = 201;
           const result = { status: 201 };
           res.status(status).send(result);
         }).catch(err => send500Status(res, err));
