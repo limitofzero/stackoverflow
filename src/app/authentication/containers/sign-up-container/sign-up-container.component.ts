@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from '../../../interfaces/user';
 import { Router } from '@angular/router';
@@ -18,9 +18,9 @@ export class SignUpContainerComponent {
     private auth: AuthApiService,
     private router: Router) {
     this.group = fb.group({
-      name: '',
-      email: '',
-      password: ''
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 

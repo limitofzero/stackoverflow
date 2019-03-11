@@ -1,5 +1,5 @@
 <form [formGroup]="group" (ngSubmit)="onSubmitHandler()">
-  <div class="form-group">
+  <div class="form-group" soControlErrorContainer>
     <label for="name">Display Name</label>
     <input class="form-control"
            type="text"
@@ -7,7 +7,7 @@
            id="name"
            formControlName="name">
   </div>
-  <div class="form-group">
+  <div class="form-group" soControlErrorContainer>
     <label for="email">Email (required, but never shown)</label>
     <input class="form-control"
            type="email"
@@ -15,7 +15,7 @@
            id="email"
            formControlName="email">
   </div>
-  <div class="form-group">
+  <div class="form-group" soControlErrorContainer>
     <label for="password">Password</label>
     <input class="form-control"
            type="email"

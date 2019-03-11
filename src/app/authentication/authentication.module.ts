@@ -10,6 +10,7 @@ import { SignUpContainerComponent } from './containers/sign-up-container/sign-up
 import { AuthApiService } from './services/auth-api.service';
 import { environment } from '../../environments/environment';
 import { AuthApiMockService } from './services/auth-api-mock.service';
+import { FormValidationModule } from './form-validation/form-validation.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthApiMockService } from './services/auth-api-mock.service';
     RoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FormValidationModule
   ],
   providers: [
     { provide: AuthApiService, useClass: environment.isMock ? AuthApiMockService : AuthApiService }

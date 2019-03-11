@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'so-forgot',
@@ -11,7 +11,7 @@ export class ForgotContainerComponent {
 
   constructor(private fb: FormBuilder) {
     this.group = fb.group({
-      email: ''
+      email: ['', Validators.required]
     });
   }
 }
