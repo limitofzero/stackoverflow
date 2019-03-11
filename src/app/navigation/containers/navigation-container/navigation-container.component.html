@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Search</a>
+
+  <ng-container *ngIf="isLogged | async">
+    <a class="navbar-brand"
+       (click)="logoutClickHandler()">
+      Log out
+    </a>
+  </ng-container>
+
+</nav>

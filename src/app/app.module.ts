@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './services/user.service';
 import { environment } from '../environments/environment';
 import { UserMockService } from './services/user-mock.service';
+import { NavigationModule } from './navigation/navigation.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserMockService } from './services/user-mock.service';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    SearchModule
+    SearchModule,
+    NavigationModule
   ],
   providers: [
     { provide: UserService, useClass: environment.isMock ? UserMockService : UserService }
