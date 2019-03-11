@@ -2,26 +2,37 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.1.
 
-## Development server
+# Запуск
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Так как используется backend, то реализовал несколько вариантов:
 
-## Code scaffolding
+1) Docker:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Необходим docker на машине и утилита docker-compose
+```
+cd stackoverflow
+docker-compose build
+docker-compose up
+```
+Сервер запустится на 3000 порте. Монга на 27017. Перед запуском стоит убедиться, что порты не заняты
 
-## Build
+2) Запуск вручную
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Необходима установленная mongo и nodejs(v10.12.0). Перед запуском нужно поменять в файле stackoverflow/server/.env срочку с mongodb://mongo:27017/stackoverflow на mongodb://<your-address>/stackoverflow
 
-## Running unit tests
+```
+cd stackoverflow
+npm run build
+cd ./server
+npm run dev
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Сервер подключается к порту 3000
 
-## Running end-to-end tests
+3) Запуск без сервера. Требуется nodejs(v10.12.0). Порт 4200. Сервисы в данном варианте замоканы, поэтому можно смело вводить любой логин и пароль
+```
+cd stackoverflow
+npm run mock
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+P.S. Так как на ревью меня не будет, сразу хочу уточнить пару моментов. Бек писал первый раз и на скорую руку, поэтому код сервера выглядит не очень. На фронте в целях экономии времени описывал любой компонент, который использует сервисы как Container(хоть в нем и есть View).
