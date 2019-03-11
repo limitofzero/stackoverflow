@@ -10,7 +10,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { EMPTY, merge, Observable, Subject } from 'rxjs';
+import { EMPTY, merge, Observable, Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { FORM_ERRORS } from '../form-errors';
 import { ControlErrorComponent } from '../components/control-error/control-error.component';
@@ -21,10 +21,11 @@ import { FormSubmitDirective } from './form-submit.directive';
   selector: '[formControl], [formControlName]'
 })
 export class ControlErrorDirective implements OnInit, OnDestroy {
-  private onDestroy = new Subject<void>();
   ref: ComponentRef<ControlErrorComponent>;
   container: ViewContainerRef;
   submit: Observable<Event>;
+
+  controlChangeSubscription: Subscription;
 
   constructor(
     @Self() private controlDir: NgControl,
@@ -39,24 +40,25 @@ export class ControlErrorDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    merge(
+    this.controlChangeSubscription = merge(
+      this.controlDir.control.statusChanges,
       this.controlDir.control.valueChanges,
       this.submit
-    ).pipe(
-      takeUntil(this.onDestroy)
     ).subscribe({
-      next: () => {
-        const controlErrors = this.controlDir.errors;
-        if (controlErrors) {
-          const firstKey = Object.keys(controlErrors)[0];
-          const getError = this.errors[firstKey];
-          const text = getError(controlErrors[firstKey]);
-          this.setError(text);
-        } else if (this.ref) {
-          this.setError(null);
-        }
-      }
+      next: () => this.updateErrorIfNeed()
     });
+  }
+
+  private updateErrorIfNeed() {
+    const controlErrors = this.controlDir.errors;
+    if (controlErrors) {
+      const firstKey = Object.keys(controlErrors)[0];
+      const getError = this.errors[firstKey];
+      const text = getError(controlErrors[firstKey]);
+      this.setError(text);
+    } else if (this.ref) {
+      this.setError(null);
+    }
   }
 
   private setError(error: string): void {
@@ -69,6 +71,6 @@ export class ControlErrorDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.onDestroy.next();
+    this.controlChangeSubscription.unsubscribe();
   }
 }

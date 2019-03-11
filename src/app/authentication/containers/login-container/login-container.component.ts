@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { AuthApiService } from '../../services/auth-api.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'so-login',
@@ -31,12 +32,28 @@ export class LoginContainerComponent {
 
     const user = this.group.value;
     this.auth.login(user).subscribe({
-      next: ({ token }) => this.saveTokenAndGoToSearch(token)
+      next: ({ token }) => this.saveTokenAndGoToSearch(token),
+      error: (err) => this.handleError(err)
     });
   }
 
   private saveTokenAndGoToSearch(token: string): void {
     this.user.setToken(token);
     this.router.navigate(['']);
+  }
+
+  private handleError(err: HttpErrorResponse): void {
+    if (err.status === 401) {
+      this.setControlError('password', err.statusText);
+    } else if (err.status === 404) {
+      this.setControlError('email', err.statusText);
+    }
+
+    this.group.markAsDirty();
+  }
+
+  private setControlError(controlName: string, errorName: string) {
+    const control = this.group.controls[controlName] as FormControl;
+    control.setErrors({ [errorName]: true });
   }
 }
