@@ -20,11 +20,19 @@ export class QuickPanelService {
 
   open(): void {
     const current = this.state.getValue();
+    if (current.isOpen) {
+      return;
+    }
+
     this.state.next({ ...current, isOpen: true });
   }
 
   close(): void {
     const current = this.state.getValue();
+    if (!current.isOpen) {
+      return;
+    }
+
     this.state.next({ ...current, isOpen: false });
   }
 
