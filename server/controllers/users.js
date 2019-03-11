@@ -8,6 +8,7 @@ const connUri = process.env.MONGO_LOCAL_CONN_URL;
 
 const send500Status = (res, err) => {
   const status = 500;
+  const result = {};
   result.result = status;
   result.error = err;
   res.status(status).send(result);
@@ -15,22 +16,17 @@ const send500Status = (res, err) => {
 
 module.exports = {
   add: (req, res) => {
-    const result = {};
-    let status = 201;
-
     mongoose.connect(connUri, { useNewUrlParser: true, useCreateIndex: true })
       .then(() => {
         const { name, password, email } = req.body;
         const user = new User({ name, password, email });
 
         user.save().then(() => {
-          result.status = status;
-        }).catch((err) => {
-          status = 500;
-          result.status = status;
-          result.error = err;
-        }).finally(() => res.status(status).send(result))
-    }).catch((err) => send500Status(err));
+          const result = { status: 201 };
+          res.status(status).send(result);
+        }).catch(err => send500Status(res, err));
+
+    }).catch((err) => send500Status(res, err));
   },
   login: (req, res) => {
     const { email, password } = req.body;
@@ -56,7 +52,7 @@ module.exports = {
 
           res.status(status)
             .send(result);
-        }).catch(err => send500Status(err, res));
+        }).catch(err => send500Status(res, err));
 
       }).catch(err => {
         status = 404;
@@ -65,6 +61,6 @@ module.exports = {
         res.status(status)
           .send(result);
       })
-    }).catch(err => send500Status(err, res));
+    }).catch(err => send500Status(res, err));
   }
 };
