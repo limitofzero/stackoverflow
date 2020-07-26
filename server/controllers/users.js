@@ -19,15 +19,14 @@ module.exports = {
     mongoose.connect(connUri, { useNewUrlParser: true, useCreateIndex: true })
       .then(() => {
         const { name, password, email } = req.body;
-        const user = new User({ name, password, email });
-
-        user.save().then(() => {
-          const status = 201;
-          const result = { status: 201 };
-          res.status(status).send(result);
-        }).catch(err => send500Status(res, err));
-
-    }).catch((err) => send500Status(res, err));
+        return new User({ name, password, email });
+    }).then(user => user.save())
+      .then(() => {
+        const status = 201;
+        const result = { status: 201 };
+        res.status(status).send(result);
+      })
+      .catch((err) => send500Status(res, err));
   },
   login: (req, res) => {
     const { email, password } = req.body;
