@@ -18,7 +18,7 @@ docker-compose up
 
 2) Запуск вручную
 
-Необходима установленная mongo и nodejs(v10.12.0). Перед запуском нужно поменять в файле stackoverflow/server/.env срочку с mongodb://mongo:27017/stackoverflow на mongodb://ваши порты к монге/stackoverflow
+Необходима установленная mongo и nodejs(v12.16.1). Перед запуском нужно поменять в файле stackoverflow/server/.env срочку с mongodb://mongo:27017/stackoverflow на mongodb://ваши порты к монге/stackoverflow
 
 ```
 cd stackoverflow
@@ -29,7 +29,7 @@ npm run dev
 
 Сервер подключается к порту 3000
 
-3) Запуск без сервера. Требуется nodejs(v10.12.0). Порт 4200. Сервисы в данном варианте замоканы, поэтому можно смело вводить любой логин и пароль
+3) Запуск без сервера. Требуется nodejs(v12.16.1). Порт 4200. Сервисы в данном варианте замоканы, поэтому можно смело вводить любой логин и пароль
 ```
 cd stackoverflow
 npm run mock
