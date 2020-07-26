@@ -8,7 +8,7 @@ import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: './authentication/authentication.module#AuthenticationModule',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
     data: { animation: 'Auth' },
     canActivate: [ LoginGuard ]
   },
@@ -20,13 +20,13 @@ const routes: Routes = [
   },
   {
     path: 'results',
-    loadChildren: './results/results.module#ResultsModule',
+    loadChildren: () => import('./results/results.module').then(m => m.ResultsModule),
     data: { animation: 'Results' },
     canActivate: [ AuthGuard ]
   },
   {
     path: 'answers',
-    loadChildren: './answers/answers.module#AnswersModule',
+    loadChildren: () => import('./answers/answers.module').then(m => m.AnswersModule),
     data: { animation: 'Answers' },
     canActivate: [ AuthGuard ]
   }
