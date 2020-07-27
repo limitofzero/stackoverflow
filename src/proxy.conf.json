@@ -3,10 +3,5 @@
     "target": "http://127.0.0.1:3000",
     "secure": false,
     "changeOrigin": true
-  },
-  "http://api.stackexchange.com/2.2": {
-    "target": "http://api.stackexchange.com/2.2",
-    "secure": false,
-    "changeOrigin": true
   }
 }
