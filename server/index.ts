@@ -3,7 +3,7 @@ require('dotenv').config();
 import * as express from 'express';
 import * as logger from 'morgan';
 const bodyParser = require('body-parser');
-const path = require('path');
+import { join, resolve } from 'path';
 
 const routes = require('./routes');
 
@@ -25,11 +25,11 @@ if (environment !== 'production') {
 app.use('/api/v1', routes(router));
 
 // for statics
-app.use(express.static(path.join(__dirname, stage.staticPath)));
+app.use(express.static(join(__dirname, stage.staticPath)));
 
 app.use('/', (req, resp) => {
   const { indexFile } = stage;
-  resp.sendFile(path.resolve(__dirname, stage.staticPath, indexFile));
+  resp.sendFile(resolve(__dirname, stage.staticPath, indexFile));
 });
 
 
