@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const express = require('express');
+import * as express from 'express';
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
