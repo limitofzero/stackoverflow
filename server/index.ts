@@ -2,7 +2,7 @@ require('dotenv').config();
 
 import * as express from 'express';
 import * as logger from 'morgan';
-const bodyParser = require('body-parser');
+import * as bodyParser from 'body-parser';
 import { join, resolve } from 'path';
 
 const routes = require('./routes');
