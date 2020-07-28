@@ -5,5 +5,5 @@ module.exports = (router) => {
     .post(controller.add);
 
   router.route('/login')
-    .post(controller.login)
+    .post(controller.login);
 };
