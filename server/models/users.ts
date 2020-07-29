@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 const bcrypt = require('bcrypt');
 
 const environment = process.env.NODE_ENV;
@@ -27,8 +27,8 @@ const userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-  const user = this;
-  if(!user.isModified || !user.isNew) {
+  const user = this as any;
+  if (!user.isModified || !user.isNew) {
     next();
   } else {
     bcrypt.hash(user.password, stage.saltingRounds, function(err, hash) {
@@ -44,4 +44,4 @@ userSchema.pre('save', function(next) {
 });
 
 
-module.exports = mongoose.model('User', userSchema);
+export default mongoose.model('User', userSchema);
