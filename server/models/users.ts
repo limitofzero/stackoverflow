@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-const bcrypt = require('bcrypt');
+import * as bcrypt from 'bcrypt';
 
 const environment = process.env.NODE_ENV;
 const stage = require('../config')[environment];
@@ -31,7 +31,7 @@ userSchema.pre('save', function(next) {
   if (!user.isModified || !user.isNew) {
     next();
   } else {
-    bcrypt.hash(user.password, stage.saltingRounds, function(err, hash) {
+    bcrypt.hash(user.password, stage.saltingRounds, (err, hash) => {
       if (err) {
         console.log('Error hashing password for user', user.name);
         next(err);
