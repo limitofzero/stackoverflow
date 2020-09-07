@@ -2,6 +2,7 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "packages/server/src",
   "compilerOptions": {
-    "tsConfigPath": "packages/server/tsconfig.build.json"
+    "tsConfigPath": "packages/server/tsconfig.build.json",
+    "assets": ["**/*.proto"]
   }
 }
