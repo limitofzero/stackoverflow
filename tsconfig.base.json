@@ -15,6 +15,14 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "@grpc-proto": [
+        "libs/grpc-proto"
+      ],
+      "@grpc-proto/*": [
+        "libs/grpc-proto/*"
+      ]
+    },
     "lib": [
       "es2018",
       "dom"
