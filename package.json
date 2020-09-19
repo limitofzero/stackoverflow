@@ -2,13 +2,31 @@
   "name": "stackoverflow",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "ng": "nx",
     "start": "ng serve",
     "mock": "ng serve -c mock",
     "build": "ng build --prod",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "nx workspace-lint && ng lint",
+    "e2e": "ng e2e",
+    "nx": "nx",
+    "affected:apps": "nx affected:apps",
+    "affected:libs": "nx affected:libs",
+    "affected:build": "nx affected:build",
+    "affected:e2e": "nx affected:e2e",
+    "affected:test": "nx affected:test",
+    "affected:lint": "nx affected:lint",
+    "affected:dep-graph": "nx affected:dep-graph",
+    "affected": "nx affected",
+    "format": "nx format:write",
+    "format:write": "nx format:write",
+    "format:check": "nx format:check",
+    "update": "ng update @nrwl/workspace",
+    "update:check": "ng update",
+    "dep-graph": "nx dep-graph",
+    "workspace-schematic": "nx workspace-schematic",
+    "help": "nx help",
+    "postinstall": "node ./decorate-angular-cli.js"
   },
   "private": true,
   "dependencies": {
@@ -21,11 +39,13 @@
     "@angular/platform-browser-dynamic": "~10.0.5",
     "@angular/router": "~10.0.5",
     "@auth0/angular-jwt": "5.0.1",
+    "@nrwl/workspace": "^10.2.1",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@nrwl/angular": "10.2.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.4",
@@ -46,6 +66,8 @@
     "protractor": "~7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.7"
+    "typescript": "~3.9.7",
+    "@nrwl/workspace": "10.2.1",
+    "prettier": "2.0.4"
   }
 }

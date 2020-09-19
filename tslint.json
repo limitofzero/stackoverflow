@@ -1,7 +1,8 @@
 {
   "extends": "tslint:recommended",
   "rulesDirectory": [
-    "codelyzer"
+    "codelyzer",
+    "node_modules/@nrwl/workspace/src/tslint"
   ],
   "rules": {
     "align": {
@@ -116,8 +117,8 @@
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
-    "directive-class-suffix": true
-  ,    "variable-name": {
+    "directive-class-suffix": true,
+    "variable-name": {
       "options": [
         "ban-keywords",
         "check-format",
@@ -134,6 +135,20 @@
       "check-type",
       "check-typecast",
       "check-preblock"
+    ],
+    "nx-enforce-module-boundaries": [
+      true,
+      {
+        "allow": [],
+        "depConstraints": [
+          {
+            "sourceTag": "*",
+            "onlyDependOnLibsWithTags": [
+              "*"
+            ]
+          }
+        ]
+      }
     ]
   }
 }
