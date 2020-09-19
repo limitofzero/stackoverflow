@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+enum EStatus {
+    UNKNOWN = 0;
+    SUCCESS = 1;
+    ERROR = 2;
+}

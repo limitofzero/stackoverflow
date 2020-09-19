@@ -206,6 +206,32 @@
           }
         }
       }
+    },
+    "back-proto": {
+      "root": "libs/back-proto",
+      "sourceRoot": "libs/back-proto/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "libs/back-proto/tsconfig.lib.json",
+              "libs/back-proto/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/back-proto/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/back-proto/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "defaultProject": "stackoverflow",

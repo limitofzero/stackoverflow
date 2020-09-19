@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+import public "user.types.proto";
+import public "user.enum.proto";
+import public "user.proto";
