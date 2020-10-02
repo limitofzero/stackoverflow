@@ -19,9 +19,6 @@
     },
     "backend": {
       "tags": []
-    },
-    "back-proto": {
-      "tags": []
     }
   }
 }

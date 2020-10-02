@@ -1,9 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "paths": {
-      "@stackoverflow/back-proto": ["libs/back-proto/src/lib/*"]
-    },
     "baseUrl": ".",
     "downlevelIteration": true,
     "outDir": "./dist/out-tsc",

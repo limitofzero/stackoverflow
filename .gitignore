@@ -45,4 +45,4 @@ testem.log
 Thumbs.db
 
 #grpc generated files
-libs/back-proto/src/lib
+# libs/back-proto/src/lib
