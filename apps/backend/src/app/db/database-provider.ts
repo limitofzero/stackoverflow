@@ -1,17 +1,21 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { resolve } from 'path';
 import * as dotenv from 'dotenv';
+import { User } from './entity/user';
+import { CreateFirstUser1596659507467 } from './migrations/1596659507467-CreateFirstUser';
 
 dotenv.config();
 
 const { env } = process;
 
-const ENTITIES_PATH = './entity/**/*.ts';
-const MIGRATIONS_PATH = './migrations/**/*.ts';
-
-console.log(env.POSTGRES_PORT);
-
-const resolvePathTo = (relPath: string) => resolve(__dirname, relPath);
+console.log(
+  env.POSTGRES_HOST,
+    // tslint:disable-next-line:radix
+    parseInt(env.POSTGRES_PORT as string),
+    env.POSTGRES_USER,
+    env.POSTGRES_PASSWORD,
+    env.POSTGRES_DATABASE,
+)
 
 export const typeOrmConfig: PostgresConnectionOptions = {
     type: 'postgres',
@@ -24,10 +28,10 @@ export const typeOrmConfig: PostgresConnectionOptions = {
     synchronize: true,
     logging: false,
     entities: [
-        // resolvePathTo(ENTITIES_PATH)
+        User
     ],
     migrations: [
-        // resolvePathTo(MIGRATIONS_PATH)
+        CreateFirstUser1596659507467
     ],
-    // migrationsRun: true
+    migrationsRun: true
 };
