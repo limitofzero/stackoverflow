@@ -1,9 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, Post } from '@nestjs/common';
 import { from, Observable, of, throwError } from 'rxjs';
 import { Repository } from 'typeorm';
 import { User } from '../../../db/entity/user';
 import { LoginRequestDto } from './login-request.dto';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Controller()
@@ -27,6 +27,6 @@ export class AuthController {
   }
 
   throwUserDoesntExist(): void {
-    throw new Error('User with this email/password doesn\'t exist');
+    throw new HttpException('User with this email/password doesn\'t exist', 404);
   }
 }
