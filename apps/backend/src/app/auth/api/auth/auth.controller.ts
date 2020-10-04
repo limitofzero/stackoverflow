@@ -6,6 +6,7 @@ import { LoginRequestDto } from './login-request.dto';
 import { map, mapTo, switchMap, tap } from 'rxjs/operators';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RegisterRequestDto } from './register-request.dto';
+import * as jwt from 'jsonwebtoken';
 
 @Controller()
 export class AuthController {
@@ -13,10 +14,10 @@ export class AuthController {
 
   @Post('login')
   public login(@Body() loginRequest: LoginRequestDto): Observable<{token: string}> {
-    const { password, email } = loginRequest;
+    const { password, email, rememberMe } = loginRequest;
     return from(this.userRep.findOne({ email }))
       .pipe(
-        map(user => user?.isPasswordValid(password) ? { token: JSON.stringify(user) } : null),
+        map(user => user?.isPasswordValid(password) ? this.returnToken(user, rememberMe) : null),
         map(token => {
           if (token) {
             return token;
@@ -25,6 +26,22 @@ export class AuthController {
           this.throwUserDoesntExist();
         })
       );
+  }
+
+  private returnToken(user: User, rememberMe: boolean): { token: string } {
+    const { username, email } = user;
+    const expiresIn = this.getExpiresIn(rememberMe);
+
+    const token = jwt.sign({
+        username,
+        email
+    }, 'test', { expiresIn });
+
+    return { token };
+  }
+
+  private getExpiresIn(rememberMe: boolean): string {
+    return rememberMe ? '30d' : '1h';
   }
 
   @Post('register')
