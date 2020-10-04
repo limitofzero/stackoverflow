@@ -43,3 +43,6 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#grpc generated files
+# libs/back-proto/src/lib
