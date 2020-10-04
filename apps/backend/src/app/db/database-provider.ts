@@ -1,5 +1,4 @@
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-import { resolve } from 'path';
 import * as dotenv from 'dotenv';
 import { User } from './entity/user';
 import { CreateFirstUser1596659507467 } from './migrations/1596659507467-CreateFirstUser';
@@ -7,15 +6,6 @@ import { CreateFirstUser1596659507467 } from './migrations/1596659507467-CreateF
 dotenv.config();
 
 const { env } = process;
-
-console.log(
-  env.POSTGRES_HOST,
-    // tslint:disable-next-line:radix
-    parseInt(env.POSTGRES_PORT as string),
-    env.POSTGRES_USER,
-    env.POSTGRES_PASSWORD,
-    env.POSTGRES_DATABASE,
-)
 
 export const typeOrmConfig: PostgresConnectionOptions = {
     type: 'postgres',
