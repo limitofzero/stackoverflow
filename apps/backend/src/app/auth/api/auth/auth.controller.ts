@@ -3,8 +3,9 @@ import { from, Observable, of, throwError } from 'rxjs';
 import { Repository } from 'typeorm';
 import { User } from '../../../db/entity/user';
 import { LoginRequestDto } from './login-request.dto';
-import { map } from 'rxjs/operators';
+import { map, mapTo, switchMap, tap } from 'rxjs/operators';
 import { InjectRepository } from '@nestjs/typeorm';
+import { RegisterRequestDto } from './register-request.dto';
 
 @Controller()
 export class AuthController {
@@ -26,7 +27,18 @@ export class AuthController {
       );
   }
 
-  throwUserDoesntExist(): void {
+  @Post('register')
+  public register(@Body() registerRequest: RegisterRequestDto): Observable<void> {
+    const { email, username } = registerRequest;
+    return from(this.userRep.findOne({ email, username }))
+      .pipe(
+        map(user => !user ? this.userRep.create(registerRequest) : null),
+        switchMap(user => user ? this.userRep.save(user) : throwError(new HttpException('User was not created', 404))),
+        mapTo(null)
+      );
+  }
+
+  private throwUserDoesntExist(): void {
     throw new HttpException('User with this email/password doesn\'t exist', 404);
   }
 }
