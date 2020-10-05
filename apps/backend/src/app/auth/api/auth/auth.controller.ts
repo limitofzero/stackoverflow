@@ -1,9 +1,9 @@
-import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import { Body, Controller, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { from, Observable, of, throwError } from 'rxjs';
 import { Repository } from 'typeorm';
 import { User } from '../../../db/entity/user';
 import { LoginRequestDto } from './login-request.dto';
-import { map, mapTo, switchMap, tap } from 'rxjs/operators';
+import { map, mapTo, switchMap } from 'rxjs/operators';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RegisterRequestDto } from './register-request.dto';
 import * as jwt from 'jsonwebtoken';
@@ -15,6 +15,7 @@ export class AuthController {
   @Post('login')
   public login(@Body() loginRequest: LoginRequestDto): Observable<{token: string}> {
     const { password, email, rememberMe } = loginRequest;
+    console.log(loginRequest);
     return from(this.userRep.findOne({ email }))
       .pipe(
         map(user => user?.isPasswordValid(password) ? this.returnToken(user, rememberMe) : null),
@@ -56,6 +57,6 @@ export class AuthController {
   }
 
   private throwUserDoesntExist(): void {
-    throw new HttpException('User with this email/password doesn\'t exist', 404);
+    throw new HttpException('User with this email/password doesn\'t exist', HttpStatus.UNAUTHORIZED);
   }
 }
