@@ -1,5 +1,14 @@
+import {
+  IsEmail,
+  IsNotEmpty
+} from 'class-validator';
+
 export class LoginRequestDto {
-  email: string;
-  password: string;
-  rememberMe: boolean;
+  @IsNotEmpty()
+  @IsEmail()
+  public email: string;
+
+  @IsNotEmpty()
+  public password: string;
+  public rememberMe: boolean;
 }
