@@ -15,7 +15,8 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-      - "5432:32771"
+      - "5432:5432"
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: chat_db
